@@ -1,12 +1,13 @@
 const fs = require('fs');
 const path = require('path');
+const { stdout } = require('process');
 
 fs.readdir(
   path.resolve(__dirname, 'secret-folder'),
   { withFileTypes: true },
   function (error, files) {
     if (error) {
-      return process.stdout.write(error);
+      return stdout.write(error);
     }
     files.forEach((item) => {
       fileInfo(item);
@@ -21,7 +22,7 @@ const fileInfo = function (file) {
       let fileName = file.name.split('.').slice(0, -1).join('.');
       let fileExtension = path.extname(file.name);
       let fileSize = stats.size + ' bytes';
-      console.log(`${fileName} - ${fileExtension} - ${fileSize}`);
+      stdout.write(`${fileName} - ${fileExtension} - ${fileSize} \n`);
     });
   }
 };

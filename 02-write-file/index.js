@@ -6,7 +6,6 @@ const filePath = path.resolve(__dirname, 'text.txt');
 let writeStream = fs.createWriteStream(filePath);
 
 stdout.write('Hello! You can start enter text...\n');
-
 stdin.on('data', (data) => {
   if (data.toString().trim() === 'exit') {
     endFunc();

@@ -5,6 +5,7 @@ const dirCopy = path.resolve(__dirname, 'files-copy');
 
 async function copyDir() {
   try {
+    await deleteDir();
     await createDir();
     await copyFiles();
   } catch (error) {
@@ -31,6 +32,10 @@ async function copyFiles() {
   } catch (error) {
     console.error(error);
   }
+}
+
+async function deleteDir() {
+  await fs.rm(dirCopy, { force: true, recursive: true });
 }
 
 copyDir();
